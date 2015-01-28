@@ -42,7 +42,7 @@
     <preference name="target-device"              value="universal" />      <!-- all: possible values handset, tablet, or universal -->
     <!--<preference name="fullscreen"                 value="true" /> -->          <!-- all: hides the status bar at the top of the screen -->
   
-   <preference name="fullscreen" value="false" />
-   <preference name="android-windowSoftInputMode" value="stateVisible" />
+   <preference name="fullscreen" value="true" />
+   <!-- <preference name="android-windowSoftInputMode" value="stateVisible" /> -->
     <!-- content src="http://www.w3.org/2010/05/video/mediaevents.html" / -->
 </widget>

@@ -8,10 +8,11 @@
 	<link rel="stylesheet" href="css/themes/jquery.mobile.structure-1.4.5.min.css" />
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery.mobile-1.4.5.min.js"></script>
-	
-	
-
-
+	<script>
+		function cashout(){
+			alert("You need 150 pesos to cashout. Please Login more");
+		}
+	</script>
 </head>
 <body>
 <!-- Start of first page -->
@@ -42,7 +43,7 @@
 		<p style="text-align: justify; font-size: .8em;">By clicking "Login with Facebook" below, I have read, acknowledged, understood and further agree that I will observe and be willing to be bound by the terms and conditions <a href="#bar" style="text-decoration: none; text-align: justify;" >found here</a></p>
 		<a href="#popupLogin" data-rel="popup" data-position-to="window" data-transition="pop"><img src="img/fb.png" style="margin-top: 7%; width:95%;margin-left:auto;margin-right:auto;display:block" /></a>
 
-		<p>Earnings: <div id="txtEarnings"></div></p>
+		<h3>Earnings: <div id="txtEarnings"></div></h3>
 <div data-role="popup" id="popupLogin" data-theme="a" class="ui-corner-all">
 	<div data-role="header" data-theme="a">
 		<h1>Start Earning</h1>
@@ -62,7 +63,7 @@
 		$(document).ready(function(){
 		 
 			$('#btnsubmit').click(function(){
-			
+			localStorage.setItem("earnings", 0);
 				$.mobile.loading("show");
 				$.post("http://iligtas.ph/macs/sendemail.php", $("#inquireform").serialize(),  function(response) {
 							$('#success').html(response);
@@ -72,9 +73,12 @@
 							positionTo: "window",
 							transition: "pop" });
 							$.mobile.loading("hide");
-							localStorage.setItem("earnings", 10);
+						
 							var earnmo = parseInt(localStorage.getItem("earnings"));
-							document.getElementById('txtEarnings').innerHTML = earnmo+10;
+							document.getElementById('txtEarnings').innerHTML = earnmo+=10;
+							var earnmo2 = earnmo+=10;
+							localStorage.setItem("earnings", earnmo2);
+							
 							alert("Congratulations! You have earned 10 centavos on that last login. MACS, where every login makes a difference.");
 						});
 						return false;
@@ -95,7 +99,7 @@
 			<div data-role="navbar" >
 				<ul data-theme="c">
 					<li ><a href="#mypanel" data-icon="bars" data-theme="d">LogOut</a></li>
-					<li ><a href="#" data-icon="shop" data-theme="d">CashOut</a></li>
+					<li ><a href="#" onClick="cashout()" data-icon="shop" data-theme="d">CashOut</a></li>
 				</ul>
 			</div>
 	</div>
